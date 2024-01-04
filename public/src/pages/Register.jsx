@@ -97,7 +97,7 @@ function Register() {
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className='brand'>
             <img src={Logo} alt='logo' />
-            <h1>Chat App</h1>
+            <h1>Chat Point Com</h1>
           </div>
 
           <input
