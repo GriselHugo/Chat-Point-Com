@@ -19,7 +19,7 @@ export default function ChatInput({ handleSendMessage }) {
 
   const sendChat = (event) => {
     event.preventDefault();
-    console.log(message);
+    console.log("Message envoyé:", message);
     if (message.length > 0) {
       handleSendMessage(message);
       setMessage('');

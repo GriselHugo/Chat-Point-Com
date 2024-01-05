@@ -5,8 +5,9 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { getAllMessagesRoute, sendMessageRoute } from '../utils/api';
 
-export default function ChatContainer({ currentChat, currentUser }) {
+export default function ChatContainer({ currentChat, currentUser, socket }) {
   const [messages, setMessages] = useState([]);
+  const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollRef = React.useRef();
 
   useEffect(() => {
@@ -18,7 +19,6 @@ export default function ChatContainer({ currentChat, currentUser }) {
         });
         setMessages(res.data);
       } catch (error) {
-        // Gérer les erreurs ici
         console.error("Erreur lors de la récupération des messages :", error);
       }
     };
@@ -32,7 +32,41 @@ export default function ChatContainer({ currentChat, currentUser }) {
       to: currentChat._id,
       message: message
     });
+    socket.current.emit('send-message', {
+      to: currentChat._id,
+      from: currentUser._id,
+      message: message
+    });
+
+    const msgs = [...messages];
+    msgs.push({
+      fromSelf: true,
+      message: message
+    });
+    setMessages(msgs);
   }
+
+  useEffect(() => {
+    if (socket.current) {
+      socket.current.on('message-recieve', (data) => {
+        console.log("Message recu:", data);
+        setArrivalMessage({
+          fromSelf: false,
+          message: data
+        });
+      });
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    if (arrivalMessage) {
+      setMessages((prev) => [...prev, arrivalMessage]);
+    }
+  }, [arrivalMessage]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <Container>
