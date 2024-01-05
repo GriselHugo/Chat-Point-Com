@@ -6,6 +6,7 @@ import { allUsersRoute } from "../utils/api";
 
 import Contacts from "../components/Contacts";
 import Welcome from "../components/Welcome";
+import ChatContainer from "../components/ChatContainer";
 
 function Chat() {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ function Chat() {
             currentChat === undefined ? (
               <Welcome />
             ) : (
-              ""
+              <ChatContainer currentChat={currentChat} currentUser={currentUser} />
             )
           }
         </div>
