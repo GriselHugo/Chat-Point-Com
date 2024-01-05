@@ -6,8 +6,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { registerRoute } from '../utils/api';
 
-import Logo from '../assets/logo.svg';
-
 function Register() {
   const [values, setValues] = useState({
     username: '',
@@ -96,7 +94,6 @@ function Register() {
       <FormContainer>
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className='brand'>
-            <img src={Logo} alt='logo' />
             <h1>Chat Point Com</h1>
           </div>
 

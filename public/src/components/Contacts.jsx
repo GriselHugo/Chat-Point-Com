@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Logo from "../assets/logo.svg";
 import Logout from "./Logout";
 
 export default function Contacts({ contacts, currentUser, changeChat }) {
@@ -31,7 +30,6 @@ export default function Contacts({ contacts, currentUser, changeChat }) {
       currentUserAvatar && currentUserName && (
         <Container>
           <div className="brand">
-            <img src={Logo} alt="logo" />
             <h3>Chat Point Com</h3>
           </div>
           <div className="contacts">
