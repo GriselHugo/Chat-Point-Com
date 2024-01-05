@@ -11,7 +11,7 @@
     - [Using your local installation](#using-your-local-installation)
 
 ## **Description**
-This is a chat application that allows users to chat with each other in real time. Users can create a room and invite other users to join the room. Users can also send private messages to each other.
+This is a chat application that allows users to chat with each other in real time. Users can create a group and invite other users to join the group (not fully implemented). Users can also send private messages to each other.
 
 ### Developer
 - Grisel Hugo - (hugo.grisel@epitech.eu)
